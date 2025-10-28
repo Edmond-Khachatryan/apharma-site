@@ -101,17 +101,71 @@ export default function NewPartnerPage() {
 
             <div>
               <label className="block text-sm font-medium text-gray-700 mb-2">
-                URL логотипа
+                Логотип
               </label>
+              
+              {/* Загрузка с компьютера */}
+              <div className="mb-3">
+                <label className="flex items-center justify-center w-full px-4 py-6 border-2 border-dashed border-gray-300 rounded-lg cursor-pointer hover:border-green-500 hover:bg-green-50 transition-colors">
+                  <div className="text-center">
+                    <svg className="mx-auto h-12 w-12 text-gray-400" stroke="currentColor" fill="none" viewBox="0 0 48 48">
+                      <path d="M28 8H12a4 4 0 00-4 4v20m32-12v8m0 0v8a4 4 0 01-4 4H12a4 4 0 01-4-4v-4m32-4l-3.172-3.172a4 4 0 00-5.656 0L28 28M8 32l9.172-9.172a4 4 0 015.656 0L28 28m0 0l4 4m4-24h8m-4-4v8m-12 4h.02" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+                    </svg>
+                    <p className="mt-2 text-sm text-gray-600">
+                      <span className="font-semibold text-green-600">Загрузить логотип</span>
+                    </p>
+                    <p className="text-xs text-gray-500 mt-1">PNG, JPG до 5MB</p>
+                  </div>
+                  <input
+                    type="file"
+                    accept="image/*"
+                    className="hidden"
+                    onChange={(e) => {
+                      const file = e.target.files?.[0];
+                      if (!file) return;
+                      if (file.size > 5 * 1024 * 1024) {
+                        alert('Файл слишком большой! Максимум 5MB');
+                        return;
+                      }
+                      const reader = new FileReader();
+                      reader.onloadend = () => {
+                        setFormData({ ...formData, logo: reader.result as string });
+                      };
+                      reader.readAsDataURL(file);
+                    }}
+                  />
+                </label>
+              </div>
+
+              <div className="relative">
+                <div className="absolute inset-0 flex items-center">
+                  <div className="w-full border-t border-gray-300"></div>
+                </div>
+                <div className="relative flex justify-center text-sm">
+                  <span className="px-2 bg-white text-gray-500">или</span>
+                </div>
+              </div>
+
               <input
                 type="url"
-                value={formData.logo}
+                value={formData.logo.startsWith('data:') ? '' : formData.logo}
                 onChange={(e) => setFormData({ ...formData, logo: e.target.value })}
-                className="w-full px-4 py-3 border rounded-lg focus:ring-2 focus:ring-green-500"
+                className="mt-3 w-full px-4 py-3 border rounded-lg focus:ring-2 focus:ring-green-500"
                 placeholder="https://example.com/logo.png"
               />
+
               {formData.logo && (
-                <img src={formData.logo} alt="Preview" className="mt-3 w-32 h-32 object-contain" onError={(e) => e.currentTarget.style.display = 'none'} />
+                <div className="mt-4">
+                  <p className="text-sm font-medium text-gray-700 mb-2">Предпросмотр:</p>
+                  <img src={formData.logo} alt="Preview" className="w-32 h-32 object-contain border-2 border-gray-200 rounded-lg" onError={(e) => e.currentTarget.style.display = 'none'} />
+                  <button
+                    type="button"
+                    onClick={() => setFormData({ ...formData, logo: '' })}
+                    className="mt-2 text-sm text-red-600 hover:text-red-700"
+                  >
+                    Удалить логотип
+                  </button>
+                </div>
               )}
             </div>
 

@@ -1,5 +1,7 @@
 import createNextIntlPlugin from 'next-intl/plugin';
 
+const withNextIntl = createNextIntlPlugin('./i18n/request.ts');
+
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   images: {
@@ -10,11 +12,10 @@ const nextConfig = {
       },
     ],
   },
+  webpack: (config) => {
+    config.externals = [...(config.externals || []), { canvas: 'canvas' }];
+    return config;
+  },
 };
 
-const withNextIntl = createNextIntlPlugin({
-  // Keep default options; locales are configured in middleware
-});
-
 export default withNextIntl(nextConfig);
-

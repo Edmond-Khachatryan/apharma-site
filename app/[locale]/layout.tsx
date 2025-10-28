@@ -28,6 +28,14 @@ export default async function LocaleLayout({
   
   return (
     <html lang={locale}>
+      <head>
+        <link
+          rel="stylesheet"
+          href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+          integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY="
+          crossOrigin=""
+        />
+      </head>
       <body className={inter.className}>
         <NextIntlClientProvider messages={messages} locale={locale}>
           <Providers>

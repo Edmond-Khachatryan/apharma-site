@@ -1,8 +1,6 @@
 'use client';
 
 import { MapContainer, TileLayer, Marker, useMapEvents } from 'react-leaflet';
-import { Icon } from 'leaflet';
-import 'leaflet/dist/leaflet.css';
 import { useState } from 'react';
 
 // Fix для иконок Leaflet в Next.js

@@ -1,0 +1,90 @@
+// Production schema for PostgreSQL
+// Для деплоя: скопируйте это в schema.prisma
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+  directUrl = env("DIRECT_URL") // Для Neon
+}
+
+// Модель пользователя (администратора)
+model User {
+  id        String   @id @default(cuid())
+  email     String   @unique
+  password  String
+  name      String
+  role      String   @default("admin")
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+// Категории лекарств
+model Category {
+  id        String     @id @default(cuid())
+  name      String
+  slug      String     @unique
+  createdAt DateTime   @default(now())
+  updatedAt DateTime   @updatedAt
+  medicines Medicine[]
+}
+
+// Лекарства
+model Medicine {
+  id          String   @id @default(cuid())
+  name        String
+  description String   @db.Text
+  price       String
+  image       String?
+  inStock     Boolean  @default(true)
+  categoryId  String
+  category    Category @relation(fields: [categoryId], references: [id])
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+  
+  @@index([categoryId])
+}
+
+// Партнеры
+model Partner {
+  id          String   @id @default(cuid())
+  name        String
+  description String   @db.Text
+  logo        String?
+  website     String?
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+}
+
+// Аптеки
+model Pharmacy {
+  id        String   @id @default(cuid())
+  name      String
+  address   String
+  phone     String
+  hours     String
+  image     String?
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+// Статьи блога
+model BlogPost {
+  id        String   @id @default(cuid())
+  title     String
+  excerpt   String
+  content   String   @db.Text
+  image     String?
+  author    String
+  category  String
+  readTime  String
+  published Boolean  @default(false)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  
+  @@index([published])
+}
+

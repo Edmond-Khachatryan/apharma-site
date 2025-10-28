@@ -1,0 +1,173 @@
+{
+  "common": {
+    "search": "Search",
+    "searchPlaceholder": "Search by keyword",
+    "phone": "Phone",
+    "email": "Email",
+    "address": "Address",
+    "readMore": "Read more",
+    "learnMore": "Learn more",
+    "viewAll": "View all",
+    "home": "Home",
+    "about": "About",
+    "contact": "Contact",
+    "login": "Login",
+    "logout": "Logout",
+    "save": "Save",
+    "cancel": "Cancel",
+    "delete": "Delete",
+    "edit": "Edit",
+    "create": "Create",
+    "add": "Add",
+    "inStock": "In stock",
+    "outOfStock": "Out of stock",
+    "buy": "Buy",
+    "language": "Language"
+  },
+  "nav": {
+    "home": "Home",
+    "partners": "Partners",
+    "medicines": "Medicines",
+    "pharmacies": "Pharmacies",
+    "blog": "Blog",
+    "contact": "Contact",
+    "about": "About"
+  },
+  "home": {
+    "hero": {
+      "title": "Quality Medicines and Medical Products",
+      "subtitle": "Professional solutions for your health",
+      "learnMore": "Learn more"
+    },
+    "featured": {
+      "title": "Popular Medicines",
+      "subtitle": "Quality pharmaceutical products from trusted manufacturers",
+      "buy": "Buy",
+      "viewAll": "View all medicines",
+      "loading": "Loading..."
+    },
+    "about": {
+      "title": "About APHARMA",
+      "description1": "We are a leading pharmaceutical company providing quality medicines and medical products in the Armenian market.",
+      "description2": "Our mission is to make quality healthcare accessible to everyone by offering a wide range of products and professional consultations. Healthier Tomorrow is not just a slogan, it's our promise.",
+      "learnMore": "Learn more about us"
+    }
+  },
+  "medicines": {
+    "title": "Medicines",
+    "subtitle": "Quality medical products for your health",
+    "allCategories": "All categories",
+    "searchPlaceholder": "Search medicines...",
+    "notFound": "Medicines not found"
+  },
+  "pharmacies": {
+    "title": "Our Pharmacies",
+    "subtitle": "Demi Pharm pharmacy network across Yerevan",
+    "hours": "Hours"
+  },
+  "blog": {
+    "title": "Our Blog",
+    "subtitle": "Useful articles about health, medicines and medical news",
+    "author": "Author",
+    "readTime": "Read time",
+    "allArticles": "All articles"
+  },
+  "contact": {
+    "title": "Contact Us",
+    "subtitle": "We are always happy to help you",
+    "form": {
+      "name": "Your name",
+      "email": "Email",
+      "phone": "Phone",
+      "message": "Message",
+      "send": "Send",
+      "sending": "Sending...",
+      "success": "Thank you for your message! We will contact you soon."
+    },
+    "info": {
+      "title": "Contact Information",
+      "address": "Address",
+      "workingHours": "Working Hours",
+      "mondayFriday": "Mon-Fri: 9:00 - 20:00",
+      "weekend": "Sat-Sun: 10:00 - 18:00"
+    }
+  },
+  "footer": {
+    "description": "Quality medicines and medical products for your health.",
+    "quickLinks": "Quick Links",
+    "services": "Services",
+    "contactInfo": "Contact Information",
+    "allRightsReserved": "All rights reserved",
+    "delivery": "Delivery",
+    "returns": "Returns",
+    "location": "Yerevan, Armenia"
+  },
+  "admin": {
+    "dashboard": "Dashboard",
+    "welcome": "Welcome to admin panel!",
+    "subtitle": "Manage your medical website content",
+    "medicines": "Medicines",
+    "partners": "Partners",
+    "pharmacies": "Pharmacies",
+    "blog": "Blog",
+    "addMedicine": "Add medicine",
+    "addPartner": "Add partner",
+    "addPharmacy": "Add pharmacy",
+    "addArticle": "Add article",
+    "email": "Email",
+    "password": "Password",
+    "loginTitle": "Admin Panel",
+    "testAccess": "Test access",
+    "loading": "Loading...",
+    "login": "Login",
+    "logout": "Logout",
+    "adminUser": "Administrator",
+    "manageMedicines": "Manage medicine catalog",
+    "managePartners": "Manage partners",
+    "managePharmacies": "Manage pharmacy network",
+    "manageBlog": "Manage blog articles",
+    "quickActions": "Quick Actions",
+    "usefulTips": "Useful Tips",
+    "whatYouCanDo": "What you can do:",
+    "recommendations": "Recommendations:",
+    "canAddMedicines": "Add and edit medicines",
+    "canManagePartners": "Manage company partners",
+    "canUpdatePharmacies": "Update pharmacy information",
+    "canPublishBlog": "Publish blog articles",
+    "uploadQualityImages": "Upload quality images",
+    "fillAllFields": "Fill all fields in detail",
+    "updateRegularly": "Regularly update content",
+    "checkPrices": "Check prices and availability",
+    "statsLabel": {
+      "medicines": "Medicines",
+      "partners": "Partners",
+      "pharmacies": "Pharmacies",
+      "articles": "Articles"
+    },
+    "goToManagement": "Go to management"
+  },
+  "blog": {
+    "title": "Read our blog",
+    "subtitle": "Useful articles about health, medicines and medical news",
+    "allArticles": "All articles"
+  },
+  "aboutFeatures": {
+    "quality": {
+      "title": "High Quality",
+      "description": "Certified products from trusted manufacturers"
+    },
+    "safety": {
+      "title": "Safety",
+      "description": "All products meet international standards"
+    },
+    "delivery": {
+      "title": "Fast Delivery",
+      "description": "Delivery across Armenia in the shortest time"
+    },
+    "professionalism": {
+      "title": "Professionalism",
+      "description": "Qualified pharmaceutical consultations"
+    }
+  }
+}
+

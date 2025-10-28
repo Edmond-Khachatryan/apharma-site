@@ -1,0 +1,33 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  @apply bg-gray-50 text-gray-900;
+}
+
+/* Swiper custom styles */
+.swiper-pagination-bullet {
+  @apply bg-white opacity-60;
+}
+
+.swiper-pagination-bullet-active {
+  @apply opacity-100 bg-primary-500;
+}
+
+.swiper-button-next,
+.swiper-button-prev {
+  @apply text-white bg-white/30 rounded-full w-12 h-12;
+}
+
+.swiper-button-next:after,
+.swiper-button-prev:after {
+  @apply text-2xl;
+}
+

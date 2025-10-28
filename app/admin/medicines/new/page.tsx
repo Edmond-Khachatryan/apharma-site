@@ -115,35 +115,38 @@ export default function NewMedicinePage() {
                 <button
                   type="button"
                   onClick={() => setActiveTab('ru')}
-                  className={`py-4 px-1 border-b-2 font-medium text-sm ${
+                  className={`py-4 px-1 border-b-2 font-medium text-sm flex items-center gap-2 ${
                     activeTab === 'ru'
                       ? 'border-blue-500 text-blue-600'
                       : 'border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300'
                   }`}
                 >
-                  🇷🇺 Русский *
+                  <img src="https://flagcdn.com/w40/ru.png" alt="Russia" className="w-6 h-4 object-cover rounded" />
+                  <span>Русский *</span>
                 </button>
                 <button
                   type="button"
                   onClick={() => setActiveTab('en')}
-                  className={`py-4 px-1 border-b-2 font-medium text-sm ${
+                  className={`py-4 px-1 border-b-2 font-medium text-sm flex items-center gap-2 ${
                     activeTab === 'en'
                       ? 'border-blue-500 text-blue-600'
                       : 'border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300'
                   }`}
                 >
-                  🇬🇧 English
+                  <img src="https://flagcdn.com/w40/gb.png" alt="English" className="w-6 h-4 object-cover rounded" />
+                  <span>English</span>
                 </button>
                 <button
                   type="button"
                   onClick={() => setActiveTab('hy')}
-                  className={`py-4 px-1 border-b-2 font-medium text-sm ${
+                  className={`py-4 px-1 border-b-2 font-medium text-sm flex items-center gap-2 ${
                     activeTab === 'hy'
                       ? 'border-blue-500 text-blue-600'
                       : 'border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300'
                   }`}
                 >
-                  🇦🇲 Հայերեն
+                  <img src="https://flagcdn.com/w40/am.png" alt="Armenian" className="w-6 h-4 object-cover rounded" />
+                  <span>Հայերեն</span>
                 </button>
               </nav>
             </div>

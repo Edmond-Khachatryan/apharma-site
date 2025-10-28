@@ -6,9 +6,9 @@ import { useLocale, useTranslations } from 'next-intl';
 import { useRouter, usePathname } from '@/i18n/routing';
 
 const languages = [
-  { code: 'ru', name: 'Русский', flag: '🇷🇺' },
-  { code: 'en', name: 'English', flag: '🇬🇧' },
-  { code: 'hy', name: 'Հայերեն', flag: '🇦🇲' },
+  { code: 'ru', name: 'Русский', flag: 'https://flagcdn.com/w40/ru.png', alt: 'RU' },
+  { code: 'en', name: 'English', flag: 'https://flagcdn.com/w40/gb.png', alt: 'GB' },
+  { code: 'hy', name: 'Հայերեն', flag: 'https://flagcdn.com/w40/am.png', alt: 'AM' },
 ] as const;
 
 export default function LanguageSwitcher() {
@@ -34,7 +34,7 @@ export default function LanguageSwitcher() {
         className="flex items-center gap-2 px-4 py-2 bg-white border border-gray-300 rounded-lg hover:bg-gray-50 transition-colors"
         aria-label={t('language') || 'Language'}
       >
-        <span className="text-2xl">{currentLanguage.flag}</span>
+        <img src={currentLanguage.flag} alt={currentLanguage.alt} className="w-6 h-4 object-cover rounded" />
         <span className="text-gray-700 font-medium hidden md:inline">{currentLanguage.name}</span>
         <FiChevronDown className="text-gray-500" />
       </button>
@@ -54,7 +54,7 @@ export default function LanguageSwitcher() {
                   locale === lang.code ? 'bg-primary-50 text-primary-700' : 'text-gray-700'
                 }`}
               >
-                <span className="text-2xl">{lang.flag}</span>
+                <img src={lang.flag} alt={lang.alt} className="w-6 h-4 object-cover rounded" />
                 <span className="font-medium">{lang.name}</span>
               </button>
             ))}

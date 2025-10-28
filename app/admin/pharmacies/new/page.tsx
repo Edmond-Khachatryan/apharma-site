@@ -2,7 +2,8 @@
 
 import { useState, useEffect } from 'react';
 import { useRouter } from '@/i18n/routing';
-import { FiArrowLeft, FiSave } from 'react-icons/fi';
+import { FiArrowLeft, FiSave, FiMapPin } from 'react-icons/fi';
+import MapPicker from '@/components/MapPicker';
 
 export default function NewPharmacyPage() {
   const router = useRouter();
@@ -12,6 +13,8 @@ export default function NewPharmacyPage() {
     address: '',
     phone: '',
     hours: '9:00 - 21:00',
+    latitude: 40.1872,
+    longitude: 44.5152,
     image: '',
   });
 
@@ -82,6 +85,24 @@ export default function NewPharmacyPage() {
           <div>
             <label className="block text-sm font-medium text-gray-700 mb-2">Часы работы *</label>
             <input type="text" required value={formData.hours} onChange={(e) => setFormData({ ...formData, hours: e.target.value })} className="w-full px-4 py-3 border rounded-lg focus:ring-2 focus:ring-purple-500" />
+          </div>
+
+          {/* Карта для выбора местоположения */}
+          <div>
+            <label className="block text-sm font-medium text-gray-700 mb-2">
+              <FiMapPin className="inline mr-2" />
+              Местоположение на карте *
+            </label>
+            <MapPicker
+              latitude={formData.latitude}
+              longitude={formData.longitude}
+              onLocationSelect={(lat, lng) => {
+                setFormData({ ...formData, latitude: lat, longitude: lng });
+              }}
+            />
+            <p className="text-sm text-gray-500 mt-2">
+              Выбрано: {formData.latitude?.toFixed(6)}, {formData.longitude?.toFixed(6)}
+            </p>
           </div>
 
           <div>

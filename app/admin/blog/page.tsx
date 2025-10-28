@@ -100,7 +100,7 @@ export default function BlogPage() {
             </div>
             
             <button
-              onClick={() => alert('Функция добавления статьи будет доступна после настройки БД')}
+              onClick={() => router.push('/admin/blog/new')}
               className="flex items-center gap-2 bg-gradient-to-r from-orange-500 to-orange-600 text-white px-6 py-3 rounded-lg hover:shadow-lg transition-all"
             >
               <FiPlus />

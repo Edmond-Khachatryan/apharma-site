@@ -97,7 +97,7 @@ export default function PharmaciesPage() {
             </div>
             
             <button
-              onClick={() => alert('Функция добавления аптеки будет доступна после настройки БД')}
+              onClick={() => router.push('/admin/pharmacies/new')}
               className="flex items-center gap-2 bg-gradient-to-r from-purple-500 to-purple-600 text-white px-6 py-3 rounded-lg hover:shadow-lg transition-all"
             >
               <FiPlus />

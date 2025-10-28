@@ -96,7 +96,7 @@ export default function PartnersPage() {
             </div>
             
             <button
-              onClick={() => alert('Функция добавления партнёра будет доступна после настройки БД')}
+              onClick={() => router.push('/admin/partners/new')}
               className="flex items-center gap-2 bg-gradient-to-r from-green-500 to-green-600 text-white px-6 py-3 rounded-lg hover:shadow-lg transition-all"
             >
               <FiPlus />

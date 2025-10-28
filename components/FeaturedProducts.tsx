@@ -68,7 +68,7 @@ export default function FeaturedProducts() {
             >
               <div className="relative overflow-hidden">
                 <img
-                  src={product.image}
+                  src={product.image || '/placeholder.png'}
                   alt={product.name}
                   className="w-full h-64 object-cover group-hover:scale-110 transition-transform duration-300"
                 />

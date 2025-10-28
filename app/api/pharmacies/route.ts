@@ -19,15 +19,15 @@ export async function GET() {
 export async function POST(request: NextRequest) {
   try {
     const body = await request.json();
-    const { name, address, phone, email, workingHours } = body;
+    const { name, address, phone, hours, image } = body;
 
     const pharmacy = await prisma.pharmacy.create({
       data: {
         name,
         address,
         phone,
-        email,
-        workingHours,
+        hours: hours || '9:00 - 21:00',
+        image,
       },
     });
 

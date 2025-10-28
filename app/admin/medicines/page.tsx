@@ -102,7 +102,7 @@ export default function MedicinesPage() {
             </div>
             
             <button
-              onClick={() => router.push('/admin/medicines/new')}
+              onClick={() => alert('Функция добавления будет доступна в следующей версии. Сейчас используйте prisma studio локально: npx prisma studio')}
               className="flex items-center gap-2 bg-gradient-to-r from-blue-500 to-blue-600 text-white px-6 py-3 rounded-lg hover:shadow-lg transition-all"
             >
               <FiPlus />
@@ -117,12 +117,10 @@ export default function MedicinesPage() {
             <p className="text-gray-500 text-lg mb-4">
               Пока нет лекарств в базе данных
             </p>
-            <button
-              onClick={() => router.push('/admin/medicines/new')}
-              className="text-blue-600 hover:text-blue-700 font-medium"
-            >
-              Добавить первое лекарство
-            </button>
+            <p className="text-gray-400 text-sm">
+              Используйте Prisma Studio для добавления данных:<br/>
+              <code className="bg-gray-100 px-2 py-1 rounded">npx prisma studio</code>
+            </p>
           </div>
         ) : (
           <div className="grid gap-6">
@@ -153,14 +151,9 @@ export default function MedicinesPage() {
                       
                       <div className="flex gap-2">
                         <button
-                          onClick={() => router.push(`/admin/medicines/${medicine.id}`)}
-                          className="p-2 text-blue-600 hover:bg-blue-50 rounded-lg transition-colors"
-                        >
-                          <FiEdit2 size={20} />
-                        </button>
-                        <button
                           onClick={() => handleDelete(medicine.id)}
                           className="p-2 text-red-600 hover:bg-red-50 rounded-lg transition-colors"
+                          title="Удалить"
                         >
                           <FiTrash2 size={20} />
                         </button>

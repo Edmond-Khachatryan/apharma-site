@@ -1,0 +1,53 @@
+# ⚡ БЫСТРАЯ НАСТРОЙКА APHARMA
+
+## После получения Connection String из Neon:
+
+### 1️⃣ Установить DATABASE_URL (ЗАМЕНИ НА СВОЮ СТРОКУ!)
+$env:DATABASE_URL="postgresql://neondb_owner:YOUR_PASSWORD@ep-YOUR-NAME.aws.neon.tech/neondb?sslmode=require"
+
+### 2️⃣ Создать миграции
+npx prisma migrate deploy
+
+### 3️⃣ Заполнить базу данными
+npm run db:seed
+
+### 4️⃣ Проверить локально
+npm run dev
+# Откройте: http://localhost:3000
+
+---
+
+## Что добавится в базу:
+
+✅ 4 категории (Анальгетики, Антибиотики, Витамины, Сердечно-сосудистые)
+✅ 12 лекарств
+✅ 3 партнёра
+✅ 3 аптеки
+✅ 3 статьи в блоге
+
+---
+
+## Для Netlify (после локальной проверки):
+
+1. Откройте: https://app.netlify.com
+2. Site settings → Environment variables
+3. Добавьте:
+   - DATABASE_URL = [ваша строка из Neon]
+   - ADMIN_EMAIL = admin@apharma.com
+   - ADMIN_PASSWORD_HASH = $2a$10$P8addT1uwkyGVC8yi9ebJ.v7dEsL4ms3S7bGvVMcg6kdUlEgbAlK6
+   - NODE_ENV = production
+
+4. Deploys → Trigger deploy → Clear cache and deploy
+
+---
+
+## Вход в админ панель:
+
+URL: https://your-site.netlify.app/admin/login
+Email: admin@apharma.com
+Password: admin123
+
+---
+
+ГОТОВО! 🎉
+

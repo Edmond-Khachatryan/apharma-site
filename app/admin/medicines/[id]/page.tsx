@@ -201,26 +201,80 @@ export default function EditMedicinePage() {
               </div>
             </div>
 
-            {/* URL изображения */}
+            {/* Изображение */}
             <div>
               <label className="block text-sm font-medium text-gray-700 mb-2">
-                URL изображения
+                Изображение
               </label>
+              
+              <div className="mb-3">
+                <label className="flex items-center justify-center w-full px-4 py-6 border-2 border-dashed border-gray-300 rounded-lg cursor-pointer hover:border-blue-500 hover:bg-blue-50 transition-colors">
+                  <div className="text-center">
+                    <svg className="mx-auto h-12 w-12 text-gray-400" stroke="currentColor" fill="none" viewBox="0 0 48 48">
+                      <path d="M28 8H12a4 4 0 00-4 4v20m32-12v8m0 0v8a4 4 0 01-4 4H12a4 4 0 01-4-4v-4m32-4l-3.172-3.172a4 4 0 00-5.656 0L28 28M8 32l9.172-9.172a4 4 0 015.656 0L28 28m0 0l4 4m4-24h8m-4-4v8m-12 4h.02" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+                    </svg>
+                    <p className="mt-2 text-sm text-gray-600">
+                      <span className="font-semibold text-blue-600">Загрузить новое фото</span>
+                    </p>
+                    <p className="text-xs text-gray-500 mt-1">PNG, JPG, WEBP до 5MB</p>
+                  </div>
+                  <input
+                    type="file"
+                    accept="image/*"
+                    className="hidden"
+                    onChange={async (e) => {
+                      const file = e.target.files?.[0];
+                      if (!file) return;
+                      if (file.size > 5 * 1024 * 1024) {
+                        alert('Файл слишком большой! Максимум 5MB');
+                        return;
+                      }
+                      const reader = new FileReader();
+                      reader.onloadend = () => {
+                        setFormData({ ...formData, image: reader.result as string });
+                      };
+                      reader.readAsDataURL(file);
+                    }}
+                  />
+                </label>
+              </div>
+
+              <div className="relative">
+                <div className="absolute inset-0 flex items-center">
+                  <div className="w-full border-t border-gray-300"></div>
+                </div>
+                <div className="relative flex justify-center text-sm">
+                  <span className="px-2 bg-white text-gray-500">или</span>
+                </div>
+              </div>
+
               <input
                 type="url"
-                value={formData.image || ''}
+                value={formData.image?.startsWith('data:') ? '' : (formData.image || '')}
                 onChange={(e) => setFormData({ ...formData, image: e.target.value })}
-                className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                className="mt-3 w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                placeholder="https://example.com/image.jpg"
               />
+
               {formData.image && (
-                <img
-                  src={formData.image}
-                  alt="Preview"
-                  className="mt-3 w-32 h-32 object-cover rounded-lg"
-                  onError={(e) => {
-                    e.currentTarget.style.display = 'none';
-                  }}
-                />
+                <div className="mt-4">
+                  <p className="text-sm font-medium text-gray-700 mb-2">Предпросмотр:</p>
+                  <img
+                    src={formData.image}
+                    alt="Preview"
+                    className="w-48 h-48 object-cover rounded-lg border-2 border-gray-200"
+                    onError={(e) => {
+                      e.currentTarget.style.display = 'none';
+                    }}
+                  />
+                  <button
+                    type="button"
+                    onClick={() => setFormData({ ...formData, image: null })}
+                    className="mt-2 text-sm text-red-600 hover:text-red-700"
+                  >
+                    Удалить изображение
+                  </button>
+                </div>
               )}
             </div>
 

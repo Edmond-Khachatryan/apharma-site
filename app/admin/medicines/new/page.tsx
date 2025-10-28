@@ -13,9 +13,14 @@ export default function NewMedicinePage() {
   const router = useRouter();
   const [categories, setCategories] = useState<Category[]>([]);
   const [loading, setLoading] = useState(false);
+  const [activeTab, setActiveTab] = useState<'ru' | 'en' | 'hy'>('ru');
   const [formData, setFormData] = useState({
     name: '',
+    nameEn: '',
+    nameHy: '',
     description: '',
+    descriptionEn: '',
+    descriptionHy: '',
     price: '',
     image: '',
     categoryId: '',
@@ -104,34 +109,82 @@ export default function NewMedicinePage() {
         {/* Form */}
         <form onSubmit={handleSubmit} className="bg-white rounded-lg shadow-sm p-8">
           <div className="space-y-6">
+            {/* Вкладки языков */}
+            <div className="border-b border-gray-200">
+              <nav className="-mb-px flex space-x-8">
+                <button
+                  type="button"
+                  onClick={() => setActiveTab('ru')}
+                  className={`py-4 px-1 border-b-2 font-medium text-sm ${
+                    activeTab === 'ru'
+                      ? 'border-blue-500 text-blue-600'
+                      : 'border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300'
+                  }`}
+                >
+                  🇷🇺 Русский *
+                </button>
+                <button
+                  type="button"
+                  onClick={() => setActiveTab('en')}
+                  className={`py-4 px-1 border-b-2 font-medium text-sm ${
+                    activeTab === 'en'
+                      ? 'border-blue-500 text-blue-600'
+                      : 'border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300'
+                  }`}
+                >
+                  🇬🇧 English
+                </button>
+                <button
+                  type="button"
+                  onClick={() => setActiveTab('hy')}
+                  className={`py-4 px-1 border-b-2 font-medium text-sm ${
+                    activeTab === 'hy'
+                      ? 'border-blue-500 text-blue-600'
+                      : 'border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300'
+                  }`}
+                >
+                  🇦🇲 Հայերեն
+                </button>
+              </nav>
+            </div>
+
             {/* Название */}
             <div>
               <label className="block text-sm font-medium text-gray-700 mb-2">
-                Название лекарства *
+                Название лекарства {activeTab === 'ru' ? '*' : '(необязательно)'}
               </label>
               <input
                 type="text"
-                required
-                value={formData.name}
-                onChange={(e) => setFormData({ ...formData, name: e.target.value })}
+                required={activeTab === 'ru'}
+                value={activeTab === 'ru' ? formData.name : activeTab === 'en' ? formData.nameEn : formData.nameHy}
+                onChange={(e) => setFormData({ 
+                  ...formData, 
+                  [activeTab === 'ru' ? 'name' : activeTab === 'en' ? 'nameEn' : 'nameHy']: e.target.value 
+                })}
                 className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-                placeholder="Например: Парацетамол"
+                placeholder={activeTab === 'ru' ? 'Например: Парацетамол' : activeTab === 'en' ? 'Example: Paracetamol' : 'Օրինակ: Պարացետամոլ'}
               />
             </div>
 
             {/* Описание */}
             <div>
               <label className="block text-sm font-medium text-gray-700 mb-2">
-                Описание *
+                Описание {activeTab === 'ru' ? '*' : '(необязательно)'}
               </label>
               <textarea
-                required
+                required={activeTab === 'ru'}
                 rows={4}
-                value={formData.description}
-                onChange={(e) => setFormData({ ...formData, description: e.target.value })}
+                value={activeTab === 'ru' ? formData.description : activeTab === 'en' ? formData.descriptionEn : formData.descriptionHy}
+                onChange={(e) => setFormData({ 
+                  ...formData, 
+                  [activeTab === 'ru' ? 'description' : activeTab === 'en' ? 'descriptionEn' : 'descriptionHy']: e.target.value 
+                })}
                 className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-                placeholder="Опишите показания к применению, дозировку и т.д."
+                placeholder={activeTab === 'ru' ? 'Опишите показания к применению, дозировку и т.д.' : activeTab === 'en' ? 'Describe indications, dosage, etc.' : 'Նկարագրեք ցուցումները, դոզան և այլն'}
               />
+              <p className="text-sm text-gray-500 mt-1">
+                {activeTab === 'ru' ? 'Обязательное поле' : 'Если не заполнить, будет показан русский текст'}
+              </p>
             </div>
 
             {/* Цена и Категория */}

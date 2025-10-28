@@ -2,12 +2,16 @@
 
 import { useState, useEffect } from 'react';
 import { Link } from '@/i18n/routing';
-import { useTranslations } from 'next-intl';
+import { useTranslations, useLocale } from 'next-intl';
 
 interface Medicine {
   id: string;
   name: string;
+  nameEn?: string | null;
+  nameHy?: string | null;
   description: string;
+  descriptionEn?: string | null;
+  descriptionHy?: string | null;
   price: string;
   image: string | null;
   inStock: boolean;
@@ -18,8 +22,23 @@ interface Medicine {
 
 export default function FeaturedProducts() {
   const t = useTranslations();
+  const locale = useLocale();
   const [products, setProducts] = useState<Medicine[]>([]);
   const [loading, setLoading] = useState(true);
+
+  // Функция для получения названия на нужном языке
+  const getLocalizedName = (product: Medicine) => {
+    if (locale === 'en' && product.nameEn) return product.nameEn;
+    if (locale === 'hy' && product.nameHy) return product.nameHy;
+    return product.name;
+  };
+
+  // Функция для получения описания на нужном языке
+  const getLocalizedDescription = (product: Medicine) => {
+    if (locale === 'en' && product.descriptionEn) return product.descriptionEn;
+    if (locale === 'hy' && product.descriptionHy) return product.descriptionHy;
+    return product.description;
+  };
 
   useEffect(() => {
     fetchProducts();
@@ -78,10 +97,10 @@ export default function FeaturedProducts() {
               </div>
               <div className="p-6">
                 <h3 className="text-xl font-bold text-gray-900 mb-2">
-                  {product.name}
+                  {getLocalizedName(product)}
                 </h3>
                 <p className="text-gray-600 mb-4 text-sm">
-                  {product.description}
+                  {getLocalizedDescription(product)}
                 </p>
                 <div className="flex items-center justify-between">
                   <span className="text-2xl font-bold text-primary-600">

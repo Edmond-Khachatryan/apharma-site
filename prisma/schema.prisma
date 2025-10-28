@@ -34,8 +34,12 @@ model Category {
 // Лекарства
 model Medicine {
   id          String   @id @default(cuid())
-  name        String
-  description String
+  name        String   // Русский (основной)
+  nameEn      String?  // English
+  nameHy      String?  // Հայերեն
+  description String   // Русский (основной)
+  descriptionEn String? // English
+  descriptionHy String? // Հայերեն
   price       String
   image       String?
   inStock     Boolean  @default(true)
@@ -48,8 +52,12 @@ model Medicine {
 // Партнеры
 model Partner {
   id          String   @id @default(cuid())
-  name        String
-  description String
+  name        String   // Русский (основной)
+  nameEn      String?  // English
+  nameHy      String?  // Հայերեն
+  description String   // Русский (основной)
+  descriptionEn String? // English
+  descriptionHy String? // Հայերեն
   logo        String?
   website     String?
   createdAt   DateTime @default(now())
@@ -71,9 +79,15 @@ model Pharmacy {
 // Статьи блога
 model BlogPost {
   id        String   @id @default(cuid())
-  title     String
-  excerpt   String
-  content   String
+  title     String   // Русский (основной)
+  titleEn   String?  // English
+  titleHy   String?  // Հայերեն
+  excerpt   String   // Русский (основной)
+  excerptEn String?  // English
+  excerptHy String?  // Հայերեն
+  content   String   // Русский (основной)
+  contentEn String?  // English
+  contentHy String?  // Հայերեն
   image     String?
   author    String
   category  String

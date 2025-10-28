@@ -21,7 +21,6 @@ export default function NewMedicinePage() {
     description: '',
     descriptionEn: '',
     descriptionHy: '',
-    price: '',
     image: '',
     categoryId: '',
     inStock: true,
@@ -190,42 +189,23 @@ export default function NewMedicinePage() {
               </p>
             </div>
 
-            {/* Цена и Категория */}
-            <div className="grid md:grid-cols-2 gap-6">
-              <div>
-                <label className="block text-sm font-medium text-gray-700 mb-2">
-                  Цена *
-                </label>
-                <input
-                  type="text"
-                  required
-                  value={formData.price}
-                  onChange={(e) => setFormData({ ...formData, price: e.target.value })}
-                  className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-                  placeholder="500 AMD"
-                />
-                <p className="text-sm text-gray-500 mt-1">
-                  Укажите цену с валютой, например: 500 AMD
-                </p>
-              </div>
-
-              <div>
-                <label className="block text-sm font-medium text-gray-700 mb-2">
-                  Категория *
-                </label>
-                <select
-                  required
-                  value={formData.categoryId}
-                  onChange={(e) => setFormData({ ...formData, categoryId: e.target.value })}
-                  className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-                >
-                  {categories.map((category) => (
-                    <option key={category.id} value={category.id}>
-                      {category.name}
-                    </option>
-                  ))}
-                </select>
-              </div>
+            {/* Категория */}
+            <div>
+              <label className="block text-sm font-medium text-gray-700 mb-2">
+                Категория *
+              </label>
+              <select
+                required
+                value={formData.categoryId}
+                onChange={(e) => setFormData({ ...formData, categoryId: e.target.value })}
+                className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+              >
+                {categories.map((category) => (
+                  <option key={category.id} value={category.id}>
+                    {category.name}
+                  </option>
+                ))}
+              </select>
             </div>
 
             {/* Изображение */}

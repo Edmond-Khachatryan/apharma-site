@@ -102,13 +102,14 @@ export default function FeaturedProducts() {
                 <p className="text-gray-600 mb-4 text-sm">
                   {getLocalizedDescription(product)}
                 </p>
-                <div className="flex items-center justify-between">
-                  <span className="text-2xl font-bold text-primary-600">
-                    {product.price}
+                <div className="flex items-center justify-center">
+                  <span className={`px-4 py-2 rounded-full text-sm font-medium ${
+                    product.inStock
+                      ? 'bg-green-100 text-green-700'
+                      : 'bg-red-100 text-red-700'
+                  }`}>
+                    {product.inStock ? '✓ В наличии' : '✗ Нет в наличии'}
                   </span>
-                  <button className="bg-primary-600 hover:bg-primary-700 text-white px-4 py-2 rounded-lg font-semibold transition-colors">
-                    {t('home.featured.buy')}
-                  </button>
                 </div>
               </div>
             </div>

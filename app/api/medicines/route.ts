@@ -29,7 +29,7 @@ export async function GET(request: NextRequest) {
 export async function POST(request: NextRequest) {
   try {
     const body = await request.json();
-    const { name, nameEn, nameHy, description, descriptionEn, descriptionHy, price, image, inStock, categoryId } = body;
+    const { name, nameEn, nameHy, description, descriptionEn, descriptionHy, image, inStock, categoryId } = body;
 
     const medicine = await prisma.medicine.create({
       data: {
@@ -39,7 +39,6 @@ export async function POST(request: NextRequest) {
         description,
         descriptionEn,
         descriptionHy,
-        price,
         image,
         inStock,
         categoryId,

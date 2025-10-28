@@ -40,7 +40,6 @@ model Medicine {
   description String   // Русский (основной)
   descriptionEn String? // English
   descriptionHy String? // Հայերեն
-  price       String
   image       String?
   inStock     Boolean  @default(true)
   categoryId  String
@@ -71,6 +70,8 @@ model Pharmacy {
   address   String
   phone     String
   hours     String
+  latitude  Float?   // Координаты для карты
+  longitude Float?   // Координаты для карты
   image     String?
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt

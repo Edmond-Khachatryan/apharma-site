@@ -19,7 +19,7 @@ export async function GET() {
 export async function POST(request: NextRequest) {
   try {
     const body = await request.json();
-    const { title, content, excerpt, image, published } = body;
+    const { title, content, excerpt, image, published, author, category, readTime } = body;
 
     const post = await prisma.blogPost.create({
       data: {
@@ -28,6 +28,9 @@ export async function POST(request: NextRequest) {
         excerpt,
         image,
         published,
+        author: author || 'Admin',
+        category: category || 'General',
+        readTime: readTime || '5 min',
       },
     });
 

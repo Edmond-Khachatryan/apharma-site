@@ -19,12 +19,16 @@ export async function GET() {
 export async function POST(request: NextRequest) {
   try {
     const body = await request.json();
-    const { name, description, website, logo } = body;
+    const { name, nameEn, nameHy, description, descriptionEn, descriptionHy, website, logo } = body;
 
     const partner = await prisma.partner.create({
       data: {
         name,
+        nameEn,
+        nameHy,
         description,
+        descriptionEn,
+        descriptionHy,
         website,
         logo,
       },

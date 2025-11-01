@@ -19,13 +19,19 @@ export async function GET() {
 export async function POST(request: NextRequest) {
   try {
     const body = await request.json();
-    const { title, content, excerpt, image, published, author, category, readTime } = body;
+    const { title, titleEn, titleHy, content, contentEn, contentHy, excerpt, excerptEn, excerptHy, image, published, author, category, readTime } = body;
 
     const post = await prisma.blogPost.create({
       data: {
         title,
+        titleEn,
+        titleHy,
         content,
+        contentEn,
+        contentHy,
         excerpt,
+        excerptEn,
+        excerptHy,
         image,
         published,
         author: author || 'Admin',

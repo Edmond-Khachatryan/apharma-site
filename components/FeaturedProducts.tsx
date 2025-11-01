@@ -12,12 +12,8 @@ interface Medicine {
   description: string;
   descriptionEn?: string | null;
   descriptionHy?: string | null;
-  price: string;
   image: string | null;
   inStock: boolean;
-  category: {
-    name: string;
-  };
 }
 
 export default function FeaturedProducts() {
@@ -48,10 +44,18 @@ export default function FeaturedProducts() {
     try {
       const response = await fetch('/api/medicines');
       const data = await response.json();
-      // Показываем только первые 4 товара в наличии
-      setProducts(data.filter((m: Medicine) => m.inStock).slice(0, 4));
+      
+      // Проверяем что data это массив
+      if (Array.isArray(data)) {
+        // Показываем только первые 4 товара в наличии
+        setProducts(data.filter((m: Medicine) => m.inStock).slice(0, 4));
+      } else {
+        console.error('Products data is not an array:', data);
+        setProducts([]);
+      }
     } catch (error) {
       console.error('Error fetching products:', error);
+      setProducts([]);
     } finally {
       setLoading(false);
     }
@@ -91,9 +95,6 @@ export default function FeaturedProducts() {
                   alt={product.name}
                   className="w-full h-64 object-cover group-hover:scale-110 transition-transform duration-300"
                 />
-                <div className="absolute top-4 right-4 bg-primary-600 text-white px-3 py-1 rounded-full text-sm font-semibold">
-                  {product.category.name}
-                </div>
               </div>
               <div className="p-6">
                 <h3 className="text-xl font-bold text-gray-900 mb-2">

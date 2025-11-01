@@ -11,9 +11,6 @@ export async function GET(request: NextRequest) {
     const medicines = await prisma.medicine.findMany({
       skip,
       take: limit,
-      include: {
-        category: true,
-      },
       orderBy: {
         createdAt: 'desc',
       },
@@ -29,22 +26,37 @@ export async function GET(request: NextRequest) {
 export async function POST(request: NextRequest) {
   try {
     const body = await request.json();
-    const { name, nameEn, nameHy, description, descriptionEn, descriptionHy, image, inStock, categoryId } = body;
+    const {
+      name,
+      nameEn,
+      nameHy,
+      description,
+      descriptionEn,
+      descriptionHy,
+      image,
+      inStock,
+    } = body ?? {};
+
+    const resolvedName = (name ?? nameEn ?? nameHy)?.toString().trim();
+    const resolvedDescription = (description ?? descriptionEn ?? descriptionHy)?.toString().trim();
+
+    if (!resolvedName || !resolvedDescription) {
+      return NextResponse.json(
+        { error: 'Название и описание обязательны (на любом языке)' },
+        { status: 400 }
+      );
+    }
 
     const medicine = await prisma.medicine.create({
       data: {
-        name,
+        name: resolvedName,
         nameEn,
         nameHy,
-        description,
+        description: resolvedDescription,
         descriptionEn,
         descriptionHy,
-        image,
-        inStock,
-        categoryId,
-      },
-      include: {
-        category: true,
+        image: image || null,
+        inStock: typeof inStock === 'boolean' ? inStock : true,
       },
     });
 

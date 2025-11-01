@@ -8,7 +8,7 @@ export async function PUT(
   try {
     const { id } = await params;
     const body = await request.json();
-    const { name, nameEn, nameHy, description, descriptionEn, descriptionHy, image, categoryId, inStock } = body;
+    const { name, nameEn, nameHy, description, descriptionEn, descriptionHy, image, inStock } = body;
 
     const medicine = await prisma.medicine.update({
       where: { id },
@@ -20,7 +20,6 @@ export async function PUT(
         descriptionEn,
         descriptionHy,
         image,
-        categoryId,
         inStock,
       },
     });

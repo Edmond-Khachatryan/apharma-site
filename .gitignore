@@ -40,7 +40,12 @@ prisma/dev.db
 prisma/dev.db-journal
 prisma/*.db
 prisma/*.db-journal
+prisma/prisma/
 
 # Typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# Admin debug pages
+app/admin/setup/
+app/admin/debug/

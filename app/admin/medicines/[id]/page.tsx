@@ -4,34 +4,24 @@ import { useState, useEffect } from 'react';
 import { useRouter, useParams } from 'next/navigation';
 import { FiArrowLeft, FiSave } from 'react-icons/fi';
 
-interface Category {
-  id: string;
-  name: string;
-}
-
 interface Medicine {
   id: string;
   name: string;
   description: string;
-  price: string;
   image: string | null;
-  categoryId: string;
   inStock: boolean;
 }
 
 export default function EditMedicinePage() {
   const router = useRouter();
   const params = useParams();
-  const [categories, setCategories] = useState<Category[]>([]);
   const [loading, setLoading] = useState(true);
   const [saving, setSaving] = useState(false);
   const [formData, setFormData] = useState<Medicine>({
     id: '',
     name: '',
     description: '',
-    price: '',
     image: '',
-    categoryId: '',
     inStock: true,
   });
 
@@ -55,21 +45,20 @@ export default function EditMedicinePage() {
 
   const fetchData = async () => {
     try {
-      const [categoriesRes, medicinesRes] = await Promise.all([
-        fetch('/api/categories'),
-        fetch('/api/medicines'),
-      ]);
-
-      const categoriesData = await categoriesRes.json();
+      const medicinesRes = await fetch('/api/medicines');
       const medicinesData = await medicinesRes.json();
       
-      setCategories(categoriesData);
-      
-      const medicine = medicinesData.find((m: Medicine) => m.id === params.id);
-      if (medicine) {
-        setFormData(medicine);
+      // Проверяем что medicinesData это массив
+      if (Array.isArray(medicinesData)) {
+        const medicine = medicinesData.find((m: Medicine) => m.id === params.id);
+        if (medicine) {
+          setFormData(medicine);
+        } else {
+          alert('Лекарство не найдено');
+          router.push('/admin/medicines');
+        }
       } else {
-        alert('Лекарство не найдено');
+        alert('Ошибка загрузки данных');
         router.push('/admin/medicines');
       }
     } catch (error) {
@@ -165,40 +154,6 @@ export default function EditMedicinePage() {
                 onChange={(e) => setFormData({ ...formData, description: e.target.value })}
                 className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
               />
-            </div>
-
-            {/* Цена и Категория */}
-            <div className="grid md:grid-cols-2 gap-6">
-              <div>
-                <label className="block text-sm font-medium text-gray-700 mb-2">
-                  Цена *
-                </label>
-                <input
-                  type="text"
-                  required
-                  value={formData.price}
-                  onChange={(e) => setFormData({ ...formData, price: e.target.value })}
-                  className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-                />
-              </div>
-
-              <div>
-                <label className="block text-sm font-medium text-gray-700 mb-2">
-                  Категория *
-                </label>
-                <select
-                  required
-                  value={formData.categoryId}
-                  onChange={(e) => setFormData({ ...formData, categoryId: e.target.value })}
-                  className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-                >
-                  {categories.map((category) => (
-                    <option key={category.id} value={category.id}>
-                      {category.name}
-                    </option>
-                  ))}
-                </select>
-              </div>
             </div>
 
             {/* Изображение */}

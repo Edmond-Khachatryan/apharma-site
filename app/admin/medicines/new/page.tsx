@@ -4,14 +4,8 @@ import { useState, useEffect } from 'react';
 import { useRouter } from '@/i18n/routing';
 import { FiArrowLeft, FiSave } from 'react-icons/fi';
 
-interface Category {
-  id: string;
-  name: string;
-}
-
 export default function NewMedicinePage() {
   const router = useRouter();
-  const [categories, setCategories] = useState<Category[]>([]);
   const [loading, setLoading] = useState(false);
   const [activeTab, setActiveTab] = useState<'ru' | 'en' | 'hy'>('ru');
   const [formData, setFormData] = useState({
@@ -22,13 +16,11 @@ export default function NewMedicinePage() {
     descriptionEn: '',
     descriptionHy: '',
     image: '',
-    categoryId: '',
     inStock: true,
   });
 
   useEffect(() => {
     checkAuth();
-    fetchCategories();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
@@ -41,19 +33,6 @@ export default function NewMedicinePage() {
     } catch (error) {
       console.error('Auth check failed:', error);
       router.push('/admin/login');
-    }
-  };
-
-  const fetchCategories = async () => {
-    try {
-      const response = await fetch('/api/categories');
-      const data = await response.json();
-      setCategories(data);
-      if (data.length > 0) {
-        setFormData(prev => ({ ...prev, categoryId: data[0].id }));
-      }
-    } catch (error) {
-      console.error('Error fetching categories:', error);
     }
   };
 
@@ -187,25 +166,6 @@ export default function NewMedicinePage() {
               <p className="text-sm text-gray-500 mt-1">
                 {activeTab === 'ru' ? 'Обязательное поле' : 'Если не заполнить, будет показан русский текст'}
               </p>
-            </div>
-
-            {/* Категория */}
-            <div>
-              <label className="block text-sm font-medium text-gray-700 mb-2">
-                Категория *
-              </label>
-              <select
-                required
-                value={formData.categoryId}
-                onChange={(e) => setFormData({ ...formData, categoryId: e.target.value })}
-                className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-              >
-                {categories.map((category) => (
-                  <option key={category.id} value={category.id}>
-                    {category.name}
-                  </option>
-                ))}
-              </select>
             </div>
 
             {/* Изображение */}

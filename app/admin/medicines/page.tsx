@@ -9,13 +9,8 @@ interface Medicine {
   id: string;
   name: string;
   description: string;
-  price: string;
   image: string | null;
   inStock: boolean;
-  category: {
-    id: string;
-    name: string;
-  };
 }
 
 export default function MedicinesPage() {
@@ -46,9 +41,17 @@ export default function MedicinesPage() {
     try {
       const response = await fetch('/api/medicines');
       const data = await response.json();
-      setMedicines(data);
+      
+      // Проверяем что data это массив
+      if (Array.isArray(data)) {
+        setMedicines(data);
+      } else {
+        console.error('Medicines is not an array:', data);
+        setMedicines([]);
+      }
     } catch (error) {
       console.error('Error fetching medicines:', error);
+      setMedicines([]);
     } finally {
       setLoading(false);
     }
@@ -144,9 +147,6 @@ export default function MedicinesPage() {
                         <h3 className="text-xl font-semibold text-gray-900">
                           {medicine.name}
                         </h3>
-                        <span className="text-sm text-gray-500">
-                          {medicine.category.name}
-                        </span>
                       </div>
                       
                       <div className="flex gap-2">
@@ -172,9 +172,6 @@ export default function MedicinesPage() {
                     </p>
                     
                     <div className="flex items-center gap-4">
-                      <span className="text-2xl font-bold text-blue-600">
-                        {medicine.price}
-                      </span>
                       <span className={`px-3 py-1 rounded-full text-sm font-medium ${
                         medicine.inStock
                           ? 'bg-green-100 text-green-700'

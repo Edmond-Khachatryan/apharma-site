@@ -43,7 +43,7 @@ Open http://localhost:3000
 
 **URL:** http://localhost:3000/admin/login
 
-**Email:** admin@demipharm.com  
+**Email:** admin@apharma.com  
 **Password:** admin123
 
 ## 🌐 Deployment
@@ -55,7 +55,7 @@ Open http://localhost:3000
 3. Add Environment Variables
 4. Deploy!
 
-**Detailed guide:** [KAK_PODELITSYA_SAYTOM.md](./KAK_PODELITSYA_SAYTOM.md)
+**Detailed guide:** [README_FINAL.md](./README_FINAL.md)
 
 ## 📁 Project Structure
 
@@ -82,9 +82,7 @@ public/                # Static files
 
 ## 📚 Documentation
 
-- [KAK_PODELITSYA_SAYTOM.md](./KAK_PODELITSYA_SAYTOM.md) — Deployment guide
-- [CATEGORIES_REMOVED.md](./CATEGORIES_REMOVED.md) — Recent changes
-- [PRICE_REMOVAL_SUMMARY.md](./PRICE_REMOVAL_SUMMARY.md) — Changelog
+- [README_FINAL.md](./README_FINAL.md) — Full documentation
 - [USER_GUIDE_RU.md](./USER_GUIDE_RU.md) — User guide
 - [ADMIN_GUIDE.md](./ADMIN_GUIDE.md) — Admin guide
 

@@ -19,8 +19,15 @@ interface MapPickerContentProps {
   onLocationSelect: (lat: number, lng: number) => void;
 }
 
-function LocationMarker({ position, setMapCenter }: { position: [number, number] | null; setMapCenter: (center: [number, number]) => void }) {
-  const map = useMapEvents({});
+function LocationMarker({ position, setMapCenter, onLocationSelect }: { position: [number, number] | null; setMapCenter: (center: [number, number]) => void; onLocationSelect: (lat: number, lng: number) => void }) {
+  const map = useMapEvents({
+    click(e) {
+      // При клике устанавливаем новую позицию
+      const newPosition: [number, number] = [e.latlng.lat, e.latlng.lng];
+      onLocationSelect(newPosition[0], newPosition[1]);
+      setMapCenter(newPosition);
+    }
+  });
   
   // Центрируем карту когда position меняется
   useEffect(() => {
@@ -134,7 +141,14 @@ export default function MapPickerContent({ latitude, longitude, onLocationSelect
           attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>'
           url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
         />
-        {currentPosition && <LocationMarker position={currentPosition} setMapCenter={setMapCenter} />}
+        <LocationMarker 
+          position={currentPosition} 
+          setMapCenter={setMapCenter}
+          onLocationSelect={(lat, lng) => {
+            setCurrentPosition([lat, lng]);
+            onLocationSelect(lat, lng);
+          }}
+        />
       </MapContainer>
       <SearchControl onLocationSelect={(lat, lng) => { setCurrentPosition([lat, lng]); onLocationSelect(lat, lng); }} onMapCenter={setMapCenter} />
       <p className="text-sm text-gray-600 mt-2 text-center">

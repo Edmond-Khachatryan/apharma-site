@@ -94,7 +94,7 @@ export default function AdminLogin() {
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
                   className="appearance-none block w-full pl-10 pr-3 py-2 border border-gray-300 rounded-md placeholder-gray-400 focus:outline-none focus:ring-primary-500 focus:border-primary-500 sm:text-sm"
-                  placeholder="admin@apharma.com"
+                  placeholder="Введите email"
                 />
               </div>
             </div>
@@ -116,7 +116,7 @@ export default function AdminLogin() {
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
                   className="appearance-none block w-full pl-10 pr-3 py-2 border border-gray-300 rounded-md placeholder-gray-400 focus:outline-none focus:ring-primary-500 focus:border-primary-500 sm:text-sm"
-                  placeholder="admin123"
+                  placeholder="Введите пароль"
                 />
               </div>
             </div>
@@ -144,11 +144,6 @@ export default function AdminLogin() {
               </button>
             </div>
 
-            <div className="text-center">
-              <p className="text-sm text-gray-600">
-                {t('admin.testAccess')}: admin@apharma.com / admin123
-              </p>
-            </div>
           </form>
         </div>
       </div>

@@ -177,7 +177,6 @@ export default function AdminDashboard() {
             <div className="flex items-center space-x-4">
               <div className="text-right">
                 <p className="font-semibold text-gray-900">{t('admin.adminUser')}</p>
-                <p className="text-sm text-gray-600">admin@apharma.com</p>
               </div>
               <button
                 onClick={handleLogout}

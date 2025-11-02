@@ -50,6 +50,8 @@ ADMIN_PASSWORD_HASH=$2b$10$bpl73mnd7JLdqjQgQRKB1OD7KuZgh0tUUJG1rNpHg9M/7yol0omsO
 NODE_ENV=production
 ```
 
+⚠️ **ВАЖНО:** Замените `DATABASE_URL` на свой! Получите его на https://neon.tech
+
 ## ✅ ЧТО РАБОТАЕТ:
 
 ### Добавление через админку → Сразу на сайте:

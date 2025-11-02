@@ -12,9 +12,9 @@ postgresql://neondb_owner:npg_U80gxvsqRdMw@ep-solitary-cherry-agomkbib-pooler.c-
 admin@apharma.com
 ```
 
-### 3️⃣ **ADMIN_PASSWORD_HASH**
+### 3️⃣ **ADMIN_PASSWORD_HASH** (для admin123)
 ```
-$2b$10$bpl73mnd7JLdqjQgQRKB1OD7KuZgh0tUUJG1rNpHg9M/7yol0omsO
+$2b$10$0EkPQxfDoiYWLyuNJmJfJuAl5xERV9Imu1GOwnL9hAIGaWir.pngm
 ```
 
 ### 4️⃣ **NODE_ENV**

@@ -19,7 +19,7 @@ export async function GET() {
 export async function POST(request: NextRequest) {
   try {
     const body = await request.json();
-    const { name, address, phone, hours, image } = body;
+    const { name, address, phone, hours, latitude, longitude, image } = body;
 
     const pharmacy = await prisma.pharmacy.create({
       data: {
@@ -27,6 +27,8 @@ export async function POST(request: NextRequest) {
         address,
         phone,
         hours: hours || '9:00 - 21:00',
+        latitude,
+        longitude,
         image,
       },
     });

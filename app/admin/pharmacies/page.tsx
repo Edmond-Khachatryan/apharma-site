@@ -11,6 +11,8 @@ interface Pharmacy {
   address: string;
   phone: string;
   hours: string;
+  latitude?: number | null;
+  longitude?: number | null;
   image: string | null;
 }
 

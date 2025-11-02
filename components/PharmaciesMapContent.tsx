@@ -73,12 +73,12 @@ export default function PharmaciesMapContent() {
   }
 
   return (
-    <div className="w-full h-96 rounded-lg overflow-hidden border-2 border-gray-300 shadow-lg">
+    <div className="w-full h-96 rounded-lg border-2 border-gray-300 shadow-lg relative">
       <MapContainer
         center={center}
         zoom={12}
         style={{ height: '100%', width: '100%' }}
-        className="z-0"
+        className="z-0 rounded-lg"
       >
         <TileLayer
           attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>'
